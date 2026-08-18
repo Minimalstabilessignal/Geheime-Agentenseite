@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔒 Top Secret - Agenten Zugang</title>
+
     <style>
         /* ------ Globaler Spy/Agent-Look ------ */
         * {
@@ -15,7 +16,7 @@
         body {
             font-family: 'Courier New', Courier, monospace;
             background: radial-gradient(circle at center, #0a0f0a 0%, #000000 100%);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,7 +32,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.03) 0px, rgba(0, 255, 65, 0.03) 2px, transparent 2px, transparent 4px);
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 65, 0.03) 0px,
+                rgba(0, 255, 65, 0.03) 2px,
+                transparent 2px,
+                transparent 4px
+            );
             pointer-events: none;
             z-index: 1;
         }
@@ -39,7 +46,9 @@
         .container {
             background: rgba(10, 15, 10, 0.9);
             border: 2px solid #00ff41;
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.2), inset 0 0 20px rgba(0, 255, 65, 0.1);
+            box-shadow:
+                0 0 40px rgba(0, 255, 65, 0.2),
+                inset 0 0 20px rgba(0, 255, 65, 0.1);
             padding: 40px;
             border-radius: 12px;
             max-width: 800px;
@@ -63,9 +72,18 @@
         }
 
         @keyframes pulse {
-            0% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-            100% { opacity: 0.6; transform: scale(1); }
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
         }
 
         h1 {
@@ -155,8 +173,14 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         #success-content h2 {
@@ -181,8 +205,7 @@
             box-shadow: 0 0 30px rgba(0, 255, 65, 0.15);
         }
 
-        .video-wrapper video,
-        .video-wrapper iframe {
+        .video-wrapper video {
             display: block;
             width: 100%;
             max-height: 450px;
@@ -242,133 +265,201 @@
 
         /* ------ Responsive ------ */
         @media (max-width: 600px) {
-            .container { padding: 20px; }
-            h1 { font-size: 1.6rem; }
-            #pwd-input { width: 100%; font-size: 1.4rem; }
-            .btn { padding: 10px 20px; font-size: 1rem; }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            #pwd-input {
+                width: 100%;
+                font-size: 1.4rem;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- HAUPT-CONTAINER -->
     <div class="container">
 
-        <!-- ===== BILD 1: LOGIN ===== -->
+        <!-- ===== LOGIN ===== -->
         <div id="login-screen">
-            <span class="lock-icon"> 🕵️</span>
+
+            <span class="lock-icon">🕵️</span>
+
             <h1>Zugang gesperrt</h1>
-            <p class="subhead">— Finde den Geheimagenten durch Eingabe des richtigen Zugangscodes.🔐 —</p>
+
+            <p class="subhead">
+                — Finde den Geheimagenten durch Eingabe des richtigen Zugangscodes.🔐 —
+            </p>
+
             <div class="input-group">
-                <input type="password" id="pwd-input" placeholder="Codewort eingeben..." autofocus>
-                <button class="btn" onclick="checkPassword()">⏎ Entsperren</button>
+
+                <input
+                    type="password"
+                    id="pwd-input"
+                    placeholder="Codewort eingeben..."
+                    autofocus
+                >
+
+                <button class="btn" onclick="checkPassword()">
+                    ⏎ Entsperren
+                </button>
+
                 <div id="error-msg"></div>
+
             </div>
         </div>
 
-        <!-- ===== BILD 2: PASSWORT KORREKT (Erfolg) ===== -->
+
+        <!-- ===== PASSWORT KORREKT ===== -->
         <div id="success-content">
+
             <h2>✅ ZUGRIFF GEWÄHRT</h2>
-            <p class="success-sub">— Welcome Agent 0.0 Bride —</p>
+
+            <p class="success-sub">
+                — Welcome Agent 0.0 Bride —
+            </p>
+
             <div class="video-wrapper">
-                <!--
-                    ⬇️⬇️⬇️ HIER TRÄGST DU DEN LINK ZUM RICHTIGEN VIDEO EIN ⬇️⬇️⬇️
-                -->
-                <iframe id="correct-video-iframe" width="100%" height="400" src="https://www.youtube.com/embed/PLATZHALTER"
-                        title="Geheimes Agentenvideo" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                </iframe>
-                <!-- Hinweis: Ersetze "PLATZHALTER" mit deinem echten YouTube-Link (das "embed/..." dahinter) -->
+
+                <!-- RICHTIGES VIDEO (Dropbox) – autoplay entfernt -->
+                <video
+                    id="correct-video"
+                    controls
+                    playsinline
+                    preload="metadata"
+                >
+                    <source
+                        src="https://www.dropbox.com/scl/fi/xj2o0oil6b2faeth1x9lq/VID_20260818_184250.mp4?rlkey=15crsihf7bms5fev77wr99asa&st=sqyfuxwh&raw=1"
+                        type="video/mp4"
+                    >
+                    Dein Browser unterstützt dieses Videoformat nicht.
+                </video>
+
             </div>
-            <p style="margin-top:15px; color:#00ff41; opacity:0.6; font-size:1.0rem;">52.55336884143027, 13.33223385154709 🛰️</p>
+
+            <p style="margin-top:15px; color:#00ff41; opacity:0.6; font-size:1.0rem;">
+                52.55336884143027, 13.33223385154709 🛰️
+            </p>
+
         </div>
+
     </div>
 
-    <!-- ===== MODAL: FALSCHES PASSWORT (Video läuft einmal ab) ===== -->
-    <div id="wrong-modal">
-        <div class="modal-content">
-            <div class="warning">🚨 ZUTRITT VERWEIGERT 🚨</div>
 
-            <!--
-                ⬇️⬇️⬇️ DEIN LOKALES VIDEO WURDE HIER EINGEFÜGT ⬇️⬇️⬇️
-                Pfad: /home/robin/Videos/You didn't say the magic word.mp4
-                (Leerzeichen und Apostroph wurden für die URL codiert: %20 und %27)
-            -->
-            <video id="wrong-video" controls>
-                <source src="file:///home/robin/Videos/You%20didn%27t%20say%20the%20magic%20word.mp4" type="video/mp4">
-                Dein Browser unterstützt kein Video oder die Datei wurde nicht gefunden.
+    <!-- ===== MODAL: FALSCHES PASSWORT ===== -->
+    <div id="wrong-modal">
+
+        <div class="modal-content">
+
+            <div class="warning">
+                🚨 ZUTRITT VERWEIGERT 🚨
+            </div>
+
+            <!-- FALSCHES VIDEO (Dropbox) – autoplay ebenfalls entfernt (war eh nicht da) -->
+            <video
+                id="wrong-video"
+                controls
+                playsinline
+                preload="metadata"
+            >
+                <source
+                    src="https://www.dropbox.com/scl/fi/r5g5z1r0lpj7segn7uvgn/VID-20260818-WA0001.mp4?rlkey=luy86kzez1lrrtffa87nk4974&st=82sznxs3&raw=1"
+                    type="video/mp4"
+                >
+                Dein Browser unterstützt dieses Videoformat nicht.
             </video>
 
-            <p class="modal-close-note"> Ah Ah Ah 👎 Das war falsch!</p>
+            <p class="modal-close-note">
+                Ah Ah Ah 🤓👎 Das war falsch!
+            </p>
+
         </div>
+
     </div>
 
-    <script>
-        // ----- KONFIGURATION -----
-        const CORRECT_PASSWORD = "Nicole2020";  // <-- HIER KANNST DU DAS PASSWORT ÄNDERN
 
-        // ----- DOM-Referenzen -----
+    <script>
+
+        // ----- KONFIGURATION -----
+        const CORRECT_PASSWORD = "Nicole2020";
+
+        // ----- DOM-REFERENZEN -----
         const loginScreen = document.getElementById('login-screen');
         const successContent = document.getElementById('success-content');
         const errorMsg = document.getElementById('error-msg');
         const pwdInput = document.getElementById('pwd-input');
         const wrongModal = document.getElementById('wrong-modal');
         const wrongVideo = document.getElementById('wrong-video');
+        const correctVideo = document.getElementById('correct-video');
 
-        // Flag, damit das falsche Video nicht mehrmals gleichzeitig startet
         let isWrongVideoPlaying = false;
 
-        // ----- Hauptfunktion: Passwort prüfen -----
+        // ----- HAUPTFUNKTION: PASSWORT PRÜFEN -----
         function checkPassword() {
-            const inputPwd = pwdInput.value.trim();
-            errorMsg.innerText = ''; // Fehler zurücksetzen
 
-            // 1. FALL: Passwort ist RICHTIG
+            const inputPwd = pwdInput.value.trim();
+            errorMsg.innerText = '';
+
+            // =========================================
+            // 1. FALL: PASSWORT IST RICHTIG
+            // =========================================
             if (inputPwd === CORRECT_PASSWORD) {
-                // Login ausblenden, Erfolg einblenden
+
                 loginScreen.style.display = 'none';
                 successContent.style.display = 'block';
+                correctVideo.currentTime = 0;
+                correctVideo.play().catch(e => {
+                    console.warn('Das richtige Video konnte nicht automatisch abgespielt werden:', e);
+                });
                 return;
             }
 
-            // 2. FALL: Passwort ist FALSCH
+            // =========================================
+            // 2. FALL: PASSWORT IST FALSCH
+            // =========================================
             errorMsg.innerText = '❌ Falscher Code! Zugang verweigert.';
 
             if (!isWrongVideoPlaying) {
+
                 isWrongVideoPlaying = true;
                 wrongModal.style.display = 'flex';
-
-                // Video zurückspulen und abspielen
                 wrongVideo.currentTime = 0;
+
                 wrongVideo.play().catch(e => {
-                    // Falls das Video nicht geladen werden kann (z.B. CORS-Fehler),
-                    // zeige eine Meldung in der Konsole und schließe den Modal trotzdem.
                     console.warn('Video konnte nicht abgespielt werden:', e);
-                    alert('Achtung: Das lokale Video konnte nicht geladen werden. Bitte nutze Firefox oder kopiere die Datei in den gleichen Ordner wie diese HTML-Datei (und ändere den Pfad auf nur den Dateinamen).');
+                    alert('Das falsche Video konnte nicht geladen werden. Bitte überprüfe die Dropbox-Freigabe.');
                     wrongModal.style.display = 'none';
                     isWrongVideoPlaying = false;
                     pwdInput.value = '';
                     pwdInput.focus();
                 });
 
-                // Sobald das Video zu Ende ist, Modal schließen
-                wrongVideo.onended = function() {
+                // Video zu Ende → Modal schließen
+                wrongVideo.onended = function () {
                     wrongModal.style.display = 'none';
                     isWrongVideoPlaying = false;
                     pwdInput.value = '';
                     pwdInput.focus();
                 };
 
-                // Sicherheits-Timeout (falls das Video hängt)
+                // Sicherheits-Timeout (15 Sekunden)
                 setTimeout(() => {
                     if (wrongModal.style.display === 'flex') {
+                        wrongVideo.pause();
                         wrongModal.style.display = 'none';
                         isWrongVideoPlaying = false;
                         pwdInput.value = '';
                         pwdInput.focus();
                     }
-                }, 15000); // 15 Sekunden
+                }, 15000);
 
             } else {
                 pwdInput.value = '';
@@ -376,7 +467,7 @@
             }
         }
 
-        // ----- Enter-Taste -----
+        // ----- ENTER-TASTE -----
         pwdInput.addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -384,12 +475,12 @@
             }
         });
 
-        // ----- Fokus beim Laden -----
+        // ----- FOKUS BEIM LADEN -----
         window.onload = function() {
             pwdInput.focus();
         };
 
-        console.log('🔑 Agenten-Schnitzeljagd geladen. Passwort: "' + CORRECT_PASSWORD + '"');
+        console.log('🔑 Agenten-Schnitzeljagd geladen.');
     </script>
 
 </body>
